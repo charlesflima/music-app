@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const config = require('../config/config.json').development;
+const config = require('../config/config').development;
 
+// Inicializa o Sequelize com as configurações do banco de dados
 const sequelize = new Sequelize(config.database, config.username, config.password, {
   host: config.host,
   dialect: config.dialect,
@@ -14,10 +15,11 @@ const db = {
   Track: require('./track')(sequelize, DataTypes),
 };
 
-// Associações
+// Define as associações entre modelos, se aplicável
 db.User.hasMany(db.Album);
 db.Album.belongsTo(db.User);
 db.Album.hasMany(db.Track);
 db.Track.belongsTo(db.Album);
 
 module.exports = db;
+

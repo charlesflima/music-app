@@ -1,11 +1,9 @@
-// routes/userRoutes.js
 const express = require('express');
-const { createUser, getUsers, updateUser, deleteUser } = require('../controllers/userController');
+const { createUser, getUser } = require('../controllers/userController');
 const router = express.Router();
 
-router.post('/', createUser);
-router.get('/', getUsers);
-router.put('/:id', updateUser);
-router.delete('/:id', deleteUser);
+router.post('/', createUser); // Rota para criar um usuário
+router.get('/:id', getUser); // Rota para obter um usuário com seus álbuns e faixas
 
 module.exports = router;
+

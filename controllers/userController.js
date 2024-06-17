@@ -1,48 +1,40 @@
-// controllers/userController.js
-const { User } = require('../models');
+const { User, Album, Track } = require('../models');
 
 const createUser = async (req, res) => {
+  const { name, email } = req.body;
+  
   try {
-    const user = await User.create(req.body);
-    res.status(201).json(user);
+    const newUser = await User.create({ name, email });
+    res.status(201).json(newUser);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-const getUsers = async (req, res) => {
-  try {
-    const users = await User.findAll();
-    res.status(200).json(users);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
+const getUser = async (req, res) => {
+  const userId = req.params.id;
 
-const updateUser = async (req, res) => {
   try {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByPk(userId, {
+      include: [{
+        model: Album,
+        as: 'albums',
+        include: [{
+          model: Track,
+          as: 'tracks'
+        }]
+      }]
+    });
+
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-    await user.update(req.body);
+
     res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-const deleteUser = async (req, res) => {
-  try {
-    const user = await User.findByPk(req.params.id);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-    await user.destroy();
-    res.status(204).send();
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
+module.exports = { createUser, getUser };
 
-module.exports = { createUser, getUsers, updateUser, deleteUser };

@@ -9,22 +9,18 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/index.js"
+        "dest": "index.js"
       }
     ],
     "env": {
       "DB_USERNAME": "@db_username",
       "DB_PASSWORD": "@db_password",
       "DB_DATABASE": "@db_database",
-      "DB_HOST": "@db_host"
-    },
-    "build": {
-      "env": {
-        "DB_USERNAME": "@db_username",
-        "DB_PASSWORD": "@db_password",
-        "DB_DATABASE": "@db_database",
-        "DB_HOST": "@db_host"
-      }
+      "DB_HOST": "@db_host",
+      "PORT": "3000"
     }
   }
+  
+  
+  
   

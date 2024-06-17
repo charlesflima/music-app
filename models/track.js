@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     duration: {
-      type: DataTypes.INTEGER // ou outro tipo para representar a duração da faixa
+      type: DataTypes.INTEGER, // Defina o tipo de dados correto para a duração da faixa
+      allowNull: false
     }
   });
 
@@ -18,5 +19,6 @@ module.exports = (sequelize, DataTypes) => {
 
   return Track;
 };
+
 
   

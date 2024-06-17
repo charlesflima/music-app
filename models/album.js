@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     releaseDate: {
-      type: DataTypes.DATE
+      type: DataTypes.DATE // Definindo como tipo DATE para armazenar a data de lançamento
     }
   });
 
@@ -22,3 +22,9 @@ module.exports = (sequelize, DataTypes) => {
 
   return Album;
 };
+
+
+
+
+
+

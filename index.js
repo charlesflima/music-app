@@ -24,3 +24,4 @@ db.sequelize.sync().then(() => {
 }).catch((error) => {
   console.error('Unable to sync the database:', error);
 });
+

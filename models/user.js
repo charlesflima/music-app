@@ -14,11 +14,12 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = (models) => {
     User.hasMany(models.Album, {
       foreignKey: 'userId',
-      as: 'albums'
+      as: 'albums' // Alias para a associação
     });
   };
 
   return User;
 };
+
 
   
